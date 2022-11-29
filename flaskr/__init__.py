@@ -13,6 +13,7 @@ def create_app(test_config=None):
 
     )
     db.init_app(app)
+    app.register_blueprint(auth.authbp)
 
     if test_config is None:
         # load the instance config, if it exists, when not testing
