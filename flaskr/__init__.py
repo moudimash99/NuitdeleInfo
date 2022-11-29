@@ -35,4 +35,11 @@ def create_app(test_config=None):
         response.mimetype = "text/plain"
         return response
 
+    @app.route('/register')
+    def register():
+        hfhghg
+        response = make_response('Hello from Flask!', 200)
+        response.mimetype = "text/plain"
+        return response
+
     return app

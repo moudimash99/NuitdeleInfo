@@ -1,7 +1,7 @@
 import functools
 
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, session, url_for
+    Blueprint, flash, g, redirect, render_template, request, session, url_for,make_response
 )
 from werkzeug.security import check_password_hash, generate_password_hash
 
@@ -57,16 +57,36 @@ def login():
         if error is None:
             session.clear()
             session['user_id'] = user['id']
-            return redirect(url_for('index'))
+            return redirect(url_for('base'))
 
         flash(error)
 
-    return render_template('auth/login.html')
+    return render_template('login.html')
 
 @bp.route('/logout')
 def logout():
     session.clear()
     return redirect(url_for('index'))
+
+@bp.route('/test')
+def test():
+    db = get_db()
+    db.execute(
+        "INSERT INTO user (username, password) VALUES (?, ?)",
+        ("dorell#", "b"),
+    )
+    db.commit()
+
+
+    user = db.execute(
+        'SELECT * FROM user'
+    ).fetchall()
+    usernames = [c["username"] for c in user]
+    print("test")
+    print(usernames)
+    response = make_response('Test', 200)
+    response.mimetype = "text/plain"
+    return response
 
 def login_required(view):
     @functools.wraps(view)
