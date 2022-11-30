@@ -14,10 +14,10 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "app" : "cd .. && flask --app flaskr --no-debug run  & react-scripts start",
-    "start-backend": "cd .. && flask --app flaskr --no-debug run --host=0.0.0.0",
-    "build": "react-scripts build",
+    "dev": "react-scripts start",
+    "start": "npm run build && npm run flask",
+    "flask": "cd .. && flask --app flaskr --no-debug run --host=0.0.0.0",
+    "build": "react-scripts build && rm -r -f ../flaskr/static/build && mv --force ./build ../flaskr/static/build ",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
