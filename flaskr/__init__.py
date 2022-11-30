@@ -1,12 +1,12 @@
 import os
 
-from flask import Flask, make_response
+from flask import Flask, make_response, render_template, send_file, send_from_directory, url_for
 from . import db, auth
 
 
 def create_app(test_config=None):
     # create and configure the app
-    app = Flask(__name__, instance_relative_config=True)
+    app = Flask(__name__, instance_relative_config=True, static_folder="static/build/static", template_folder="static/build")
     app.config.from_mapping(
         SECRET_KEY='dev',
         DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
@@ -28,6 +28,12 @@ def create_app(test_config=None):
     except OSError:
         pass
 
+    # a route where we will display a welcome message via an HTML template
+    @app.route("/")
+    def start():
+        message = "Hello, World"
+        return render_template('index.html')
+
     # a simple page that says hello
     @app.route('/hello')
     def hello():
@@ -37,7 +43,6 @@ def create_app(test_config=None):
 
     @app.route('/register')
     def register():
-        hfhghg
         response = make_response('Hello from Flask!', 200)
         response.mimetype = "text/plain"
         return response
