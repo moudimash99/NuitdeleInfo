@@ -12,12 +12,14 @@ public class QuizScript : MonoBehaviour
         public string maintext;
         public string[] questions;
         public int correctanswer;
+        public string precision;
         
-        public Question(string maintext, string[] questions, int correctanswer)
+        public Question(string maintext, string[] questions, int correctanswer, string precision)
         {
             this.maintext = maintext;
             this.questions = questions;
             this.correctanswer = correctanswer;
+            this.precision = precision;
         }
     }
 
@@ -53,10 +55,10 @@ void changeTexts(int question)
     }
     void addMockQuestions()
     {
-  Question question1 = new Question("What is the first letter in the alphabet?", new string[] { "A", "N", "C", "D" }, 1);
-     Question question2 = new Question("Where should you put your penus?", new string[] { "Apple Pie", "Vaccum Cleaner", "Sex Worker", "Condom" }, 4);
-        Question question3 = new Question("1+2?", new string[] { "8", "4", "3", "4" }, 3);
-        Question question4 = new Question("2+3?", new string[] { "4", "5", "4", "9" }, 2);
+  Question question1 = new Question("Quel symptôme peut être provoqué par le papillomavirus ?", new string[] { "Une prise de poids", "La myopie", "Des verrues génitales", "Des plaques rouges sur la peau" }, 3, "Les condylomes externes, aussi appelés verrues génitales ou « crêtes de coq » sont des excroissances indolores pouvant apparaître sur la verge, la vulve, autour du vagin ou de l’anus. Parfois, ils entraînent des démangeaisons, mais la plupart du temps ils restent silencieux. On les fait enlever car ce n’est pas très joli, mais en réalité ils ne sont pas dangereux. Ils peuvent parfois revenir après le traitement.");
+     Question question2 = new Question("Comment améliorer l’efficacité d’un préservatif?", new string[] { "En choisir un adapté à sa taille", "Mettre 2 préservatifs", "Le pré-mâcher ", "Éviter les préservatifs normés NF" }, 3, "Un préservatif adapté à sa taille évitera qu’il glisse ou marque le pénis. Contrairement à ce qu’on pourrait penser, passer 2 préservatifs l’un sur l’autre augmente le risque qu’il de casse. La norme NF sur un préservatif renseigne un gage de qualité !");
+        Question question3 = new Question("De quoi est constitué l'intérieur du pénis ?", new string[] { "De muscles", "De corps caverneux", "De sperme", "De bois" }, 2, "Le pénis est constitué de corps caverneux. Lors d’une érection, ces corps se remplissent de sang et font gonfler le pénis. Une érection peut-être provoquée lorsque l’individu est excité.");
+        Question question4 = new Question("The penis is in the …", new string[] { "kitchen", "stadium", "pie", "condom" }, 4 ,"Sortez couverts !!!");
         questions = new List<Question>();
         questions.Add(question1);
         questions.Add(question2); questions.Add(question3); questions.Add(question4);
@@ -91,6 +93,7 @@ void changeTexts(int question)
                 SceneManager.LoadScene(0);
             }
             ShowallButtons();
+            maintext.fontSize = 20;
             changeTexts(currenQuestionnb);
             return;
 
@@ -101,16 +104,19 @@ void changeTexts(int question)
             Debug.Log("You Answered Correctly");
             Debug.Log(questions[currenQuestionnb-1].correctanswer);
             wasCorrect = true;
-            maintext.text = "That was correct, let's continue the journey";
+            maintext.text = "That was correct, let's continue the journey. \nPrecision:";
         }
         else
         {
             Debug.Log("You answered Wrongly");
             Debug.Log(questions[currenQuestionnb-1].correctanswer);
-            maintext.text = "Oops that was wrong, Let's try again";
+            maintext.text = "Oops that was wrong, Let's try again. \nPrecision:";
+            
 
 
         }
+        maintext.text += questions[currenQuestionnb - 1].precision;
+        maintext.fontSize = 7;
         HideallButtons();
 
 
