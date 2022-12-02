@@ -16,7 +16,13 @@ public class Enemy : MonoBehaviour
         LEFT_RIGHT
     }
 
-    public MoveDir moveDirection;
+    public enum EnemyType
+    {
+        VIRUS
+    }
+
+    public MoveDir MoveDirection = MoveDir.UP_DOWN;
+    public EnemyType MyType = EnemyType.VIRUS;
     
     private Vector3 _startPosition;
     
@@ -30,6 +36,10 @@ public class Enemy : MonoBehaviour
     public Collider2D _collider { get; set; }
     public AudioSource _audio { get; set; }
     public AudioClip ouch { get; set; }
+    
+    public SpriteRenderer SpriteRenderer { get; set; }
+
+    public Sprite VirusSprite;
 
     private bool down = false;
     private bool left = false;
@@ -42,11 +52,22 @@ public class Enemy : MonoBehaviour
         _collider = GetComponent<Collider2D>();
         _audio = GetComponent<AudioSource>();
         ouch = GetComponent<AudioClip>();
+        SpriteRenderer = GetComponent<SpriteRenderer>();
+
+        if (MyType == EnemyType.VIRUS)
+        {
+            SpriteRenderer.sprite = this.VirusSprite;
+        }
     }
     
     void OnCollisionEnter2D(Collision2D collision)
     {
         var player = collision.gameObject.GetComponent<PlayerController>();
+        if (player.OneTimeProtection)
+        {
+            player.DeactivateCondom();
+            return;
+        }
         if (player != null)
         {
             var ev = Schedule<PlayerEnemyCollision>();
@@ -97,10 +118,10 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        if (moveDirection == MoveDir.UP_DOWN)
+        if (MoveDirection == MoveDir.UP_DOWN)
         {
             UpDown();
-        }else if(moveDirection == MoveDir.LEFT_RIGHT)
+        }else if(MoveDirection == MoveDir.LEFT_RIGHT)
         {
             LeftRight();
         }

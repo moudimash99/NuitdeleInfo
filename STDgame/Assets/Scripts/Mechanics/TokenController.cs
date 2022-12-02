@@ -38,6 +38,7 @@ namespace Platformer.Mechanics
             }
         }
 
+        /*
         void Update()
         {
             //if it's time for the next frame...
@@ -66,6 +67,6 @@ namespace Platformer.Mechanics
                 nextFrameTime += 1f / frameRate;
             }
         }
-
+        */
     }
 }

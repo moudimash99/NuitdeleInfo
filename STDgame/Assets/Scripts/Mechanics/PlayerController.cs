@@ -33,6 +33,9 @@ namespace Platformer.Mechanics
         /*internal new*/ public AudioSource audioSource;
         public Health health;
         public bool controlEnabled = true;
+        
+        //Powerupcode
+        public bool OneTimeProtection { get; private set; } = false;
 
         bool jump;
         Vector2 move;
@@ -50,6 +53,7 @@ namespace Platformer.Mechanics
             spriteRenderer = GetComponent<SpriteRenderer>();
             animator = GetComponent<Animator>();
         }
+        
 
         protected override void Update()
         {
@@ -127,6 +131,28 @@ namespace Platformer.Mechanics
             animator.SetFloat("velocityX", Mathf.Abs(velocity.x) / maxSpeed);
 
             targetVelocity = move * maxSpeed;
+        }
+
+        public void ActivateCondom()
+        {
+            this.OneTimeProtection = true;
+        }
+        
+        public void DeactivateCondom()
+        {
+            this.OneTimeProtection = false;
+        }
+
+        public void ActivateStdTest()
+        {
+            StartCoroutine(IncreaseJumpHeight());
+        }
+
+        private IEnumerator IncreaseJumpHeight()
+        {
+            this.jumpTakeOffSpeed *= 2;
+            yield return new WaitForSeconds(10);
+            this.jumpTakeOffSpeed /= 2;
         }
 
         public enum JumpState
