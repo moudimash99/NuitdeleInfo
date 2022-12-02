@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Platformer.Gameplay;
 using UnityEngine;
@@ -21,6 +22,7 @@ namespace Platformer.Mechanics
         internal AudioSource _audio;
         SpriteRenderer spriteRenderer;
 
+
         public Bounds Bounds => _collider.bounds;
 
         void Awake()
@@ -31,6 +33,10 @@ namespace Platformer.Mechanics
             spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
+        private void Start()
+        {
+        }
+
         void OnCollisionEnter2D(Collision2D collision)
         {
             var player = collision.gameObject.GetComponent<PlayerController>();
@@ -38,7 +44,7 @@ namespace Platformer.Mechanics
             {
                 var ev = Schedule<PlayerEnemyCollision>();
                 ev.player = player;
-                ev.enemy = this;
+                //ev.enemy = this;
             }
         }
 
