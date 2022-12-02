@@ -12,12 +12,14 @@ public class QuizScript : MonoBehaviour
         public string maintext;
         public string[] questions;
         public int correctanswer;
+        public string precision;
         
-        public Question(string maintext, string[] questions, int correctanswer)
+        public Question(string maintext, string[] questions, int correctanswer, string precision)
         {
             this.maintext = maintext;
             this.questions = questions;
             this.correctanswer = correctanswer;
+            this.precision = precision;
         }
     }
 
@@ -91,6 +93,7 @@ void changeTexts(int question)
                 SceneManager.LoadScene(0);
             }
             ShowallButtons();
+            maintext.fontSize = 20;
             changeTexts(currenQuestionnb);
             return;
 
@@ -101,16 +104,19 @@ void changeTexts(int question)
             Debug.Log("You Answered Correctly");
             Debug.Log(questions[currenQuestionnb-1].correctanswer);
             wasCorrect = true;
-            maintext.text = "That was correct, let's continue the journey";
+            maintext.text = "That was correct, let's continue the journey. \nPrecision:";
         }
         else
         {
             Debug.Log("You answered Wrongly");
             Debug.Log(questions[currenQuestionnb-1].correctanswer);
-            maintext.text = "Oops that was wrong, Let's try again";
+            maintext.text = "Oops that was wrong, Let's try again. \nPrecision:";
+            
 
 
         }
+        maintext.text += questions[currenQuestionnb - 1].precision;
+        maintext.fontSize = 7;
         HideallButtons();
 
 
