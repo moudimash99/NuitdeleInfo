@@ -63,6 +63,7 @@ public class Enemy : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         var player = collision.gameObject.GetComponent<PlayerController>();
+        if (player == null) return;
         if (player.OneTimeProtection)
         {
             player.DeactivateCondom();

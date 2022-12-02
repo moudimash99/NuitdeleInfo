@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 5843668731025413174}
   - component: {fileID: -9128715013247145766}
   m_Layer: 13
-  m_Name: Enemy
+  m_Name: Enemy1
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -145,8 +145,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 3.0352468, y: -1.5274148}
-  m_Size: {x: 2.1340714, y: 2.1340714}
+  m_Offset: {x: 0.17209363, y: 0.058648348}
+  m_Size: {x: 2.2576604, y: 2.2576604}
   m_Direction: 0
 --- !u!114 &2651140156555518892
 MonoBehaviour:
@@ -290,7 +290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 418e2c96ac95eb0ba8ade2f984e17ed7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveDirection: 0
+  MoveDirection: 1
   MyType: 0
   distance: 4
   speed: 5
