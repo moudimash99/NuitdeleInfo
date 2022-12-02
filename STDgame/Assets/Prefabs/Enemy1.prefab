@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 1702612949800919892}
   - component: {fileID: 1724124757368974630}
   - component: {fileID: 2651140156555518892}
-  - component: {fileID: 772289407653213039}
   - component: {fileID: 5843668731025413174}
   - component: {fileID: -9128715013247145766}
   m_Layer: 13
@@ -168,20 +167,6 @@ MonoBehaviour:
   move: {x: 0, y: 0}
   jump: 0
   stopJump: 0
---- !u!114 &772289407653213039
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1661912868639658944}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd654acc1f7894a509f3420e5c9ffea6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  path: {fileID: 0}
-  ouch: {fileID: 8300000, guid: b7f741588644cd64bbee6387cb54a96d, type: 3}
 --- !u!82 &5843668731025413174
 AudioSource:
   m_ObjectHideFlags: 0
@@ -293,5 +278,5 @@ MonoBehaviour:
   MoveDirection: 1
   MyType: 0
   distance: 4
-  speed: 5
+  speed: 3
   VirusSprite: {fileID: 21300000, guid: 560bd28a7ef50c85dade754ac88b8145, type: 3}

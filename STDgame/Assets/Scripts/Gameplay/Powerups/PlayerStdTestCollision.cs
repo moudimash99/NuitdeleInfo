@@ -17,7 +17,7 @@ namespace Platformer.Gameplay
         {
             player.ActivateStdTest();
             //AudioSource.PlayClipAtPoint(token.tokenCollectAudio, token.transform.position);
-            GameObject.Destroy(token.gameObject);
+            token.gameObject.SetActive(false);
         }
     }
     
