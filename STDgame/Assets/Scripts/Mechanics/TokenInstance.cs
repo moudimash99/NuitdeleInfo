@@ -1,6 +1,9 @@
+using System;
+using System.Security.Cryptography;
 using Platformer.Gameplay;
 using UnityEngine;
 using static Platformer.Core.Simulation;
+using Random = UnityEngine.Random;
 
 
 namespace Platformer.Mechanics
@@ -13,6 +16,11 @@ namespace Platformer.Mechanics
     [RequireComponent(typeof(Collider2D))]
     public class TokenInstance : MonoBehaviour
     {
+        public enum PowerUpType
+        {
+            CONDOM,
+            STD_TEST
+        }
         public AudioClip tokenCollectAudio;
         [Tooltip("If true, animation will start at a random position in the sequence.")]
         public bool randomAnimationStartTime = false;
@@ -30,12 +38,28 @@ namespace Platformer.Mechanics
         internal int frame = 0;
         internal bool collected = false;
 
+        public PowerUpType powerUpType = PowerUpType.CONDOM;
+
+        public Sprite CondomSprite;
+        public Sprite StdSprite;
+
         void Awake()
         {
             _renderer = GetComponent<SpriteRenderer>();
             if (randomAnimationStartTime)
                 frame = Random.Range(0, sprites.Length);
             sprites = idleAnimation;
+        }
+
+        void Start()
+        {
+            if (this.powerUpType == PowerUpType.CONDOM)
+            {
+                this._renderer.sprite = CondomSprite;
+            }else if (this.powerUpType == PowerUpType.STD_TEST)
+            {
+                this._renderer.sprite = StdSprite;
+            }
         }
 
         void OnTriggerEnter2D(Collider2D other)
@@ -54,9 +78,17 @@ namespace Platformer.Mechanics
             if (controller != null)
                 collected = true;
             //send an event into the gameplay system to perform some behaviour.
-            var ev = Schedule<PlayerTokenCollision>();
-            ev.token = this;
-            ev.player = player;
+            if (powerUpType == PowerUpType.CONDOM)
+            {
+                var ev = Schedule<PlayerCondomCollision>();
+                ev.token = this;
+                ev.player = player;
+            } else if (powerUpType == PowerUpType.STD_TEST)
+            {
+                var ev = Schedule<PlayerStdTestCollision>();
+                ev.token = this;
+                ev.player = player;
+            }
         }
     }
 }

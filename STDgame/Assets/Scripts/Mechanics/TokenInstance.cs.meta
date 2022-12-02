@@ -3,7 +3,9 @@ guid: 92e2dcc1fb4364cdf887c66f39f76f82
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - tokenCollectAudio: {instanceID: 0}
+  - CondomSprite: {fileID: 21300000, guid: d3bacefeb08741cfb8146bff2b75e23b, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -13,7 +13,7 @@ namespace Platformer.Gameplay
     /// <typeparam name="EnemyCollision"></typeparam>
     public class PlayerEnemyCollision : Simulation.Event<PlayerEnemyCollision>
     {
-        public EnemyController enemy;
+        public Enemy enemy;
         public PlayerController player;
 
         PlatformerModel model = Simulation.GetModel<PlatformerModel>();
