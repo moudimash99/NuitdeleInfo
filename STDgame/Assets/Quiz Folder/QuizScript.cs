@@ -53,10 +53,10 @@ void changeTexts(int question)
     }
     void addMockQuestions()
     {
-  Question question1 = new Question("What is the first letter in the alphabet?", new string[] { "A", "N", "C", "D" }, 1);
-     Question question2 = new Question("Where should you put your penus?", new string[] { "Apple Pie", "Vaccum Cleaner", "Sex Worker", "Condom" }, 4);
-        Question question3 = new Question("1+2?", new string[] { "8", "4", "3", "4" }, 3);
-        Question question4 = new Question("2+3?", new string[] { "4", "5", "4", "9" }, 2);
+  Question question1 = new Question("Quel symptôme peut être provoqué par le papillomavirus ?", new string[] { "Une prise de poids", "La myopie", "Des verrues génitales", "Des plaques rouges sur la peau" }, 3);
+     Question question2 = new Question("Comment améliorer l’efficacité d’un préservatif?", new string[] { "En choisir un adapté à sa taille", "Mettre 2 préservatifs", "Le pré-mâcher ", "Éviter les préservatifs normés NF" }, 3);
+        Question question3 = new Question("De quoi est constitué l'intérieur du pénis ?", new string[] { "De muscles", "De corps caverneux", "De sperme", "De bois" }, 2);
+        Question question4 = new Question("The penis is in the …", new string[] { "kitchen", "stadium", "pie", "condom" }, 4);
         questions = new List<Question>();
         questions.Add(question1);
         questions.Add(question2); questions.Add(question3); questions.Add(question4);
